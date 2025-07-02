@@ -49,7 +49,7 @@ export const ChatScreen = () => {
       ],
     };
 
-    console.log('@@@REQUESTBODY', requestBody.contents[0].parts[0].text);
+    // console.log('@@@REQUESTBODY', requestBody.contents[0].parts[0].text);
     try {
       setMessages((prev) => GiftedChat.append(prev, [...newMessages, loadingMessage]));
       const resp = await requestAskGemini(requestBody);

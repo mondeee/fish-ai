@@ -10,7 +10,7 @@ export const requestAskGemini = async (request_body: ChatRequestBody): Promise<C
         'X-goog-api-key': process.env.GEMINI_API_KEY,
       },
     });
-    console.log('@@@RAW RESPONSE', response);
+    // console.log('@@@RAW RESPONSE', response);
     return response;
   } catch (error) {
     console.error('Error fetching data:', error);
