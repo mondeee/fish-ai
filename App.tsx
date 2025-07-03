@@ -3,6 +3,9 @@ import TabNavigator from 'app/TabNavigator';
 import * as Font from 'expo-font';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, View } from 'react-native';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistor, store } from 'services/store';
 import './global.css';
 
 export default function App() {
@@ -25,5 +28,11 @@ export default function App() {
     );
   }
 
-  return <TabNavigator />;
+  return (
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
+        <TabNavigator />
+      </PersistGate>
+    </Provider>
+  );
 }

@@ -1,6 +1,7 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
+import { useTypedSelector } from 'services/store';
 
 const spots = [
   { name: 'Spot 1', distance: '200 m', score: 2 },
@@ -9,8 +10,8 @@ const spots = [
 
 export const MapFooter = () => {
   const [visible, setVisible] = useState(true);
-
   const toggleVisibility = () => setVisible((prev) => !prev);
+  const spots = useTypedSelector((state) => state.data.selectedMarker);
 
   return (
     <View className="rounded-t-3xl bg-white p-4 shadow-lg">
@@ -22,6 +23,7 @@ export const MapFooter = () => {
       </TouchableOpacity>
 
       {visible &&
+        spots &&
         spots.map((spot, index) => (
           <View
             key={index}
@@ -32,7 +34,7 @@ export const MapFooter = () => {
             </View>
             <View className="flex-row items-center">
               <Ionicons name="star" size={18} color="#facc15" className="mr-1" />
-              <Text className="font-semibold text-gray-800">{spot.score}</Text>
+              <Text className="font-semibold text-gray-800">{index + 2}</Text>
             </View>
           </View>
         ))}
